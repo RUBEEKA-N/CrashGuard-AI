@@ -41,3 +41,11 @@ button:hover{
     font-size:24px;
     color:yellow;
 }
+.hospital{
+    background:#111;
+    margin:20px auto;
+    padding:20px;
+    width:300px;
+    border-radius:15px;
+    border:2px solid red;
+}
