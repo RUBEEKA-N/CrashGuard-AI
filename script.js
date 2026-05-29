@@ -1,9 +1,14 @@
-function detectAccident(){
+function detectAccident() {
 
-document.getElementById("alertBox").innerHTML =
+document.getElementById("alertBox").innerHTML = `
 
-`
 <h2>🚨 Accident Detected</h2>
+
+<p>📍 Location Shared</p>
+
+<p>📞 Emergency Contacts Alerted</p>
+
+<p>🚑 Ambulance On The Way</p>
 
 <div class="hospital">
 🏥 Apollo Hospital - 2.1 km <br>
