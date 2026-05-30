@@ -30,6 +30,7 @@ const zoneHospitals = {
         { name: "Venkateswara Hospital (Nandambakkam)", lat: 13.0100, lon: 80.2000 },
         { name: "Kalaignar Centenary Super Specialty Hospital (Guindy)", lat: 13.0100, lon: 80.2200 },
         { name: "Malar Hospital (Adyar)", lat: 13.0060, lon: 80.2570 }
+        { name: "Avinash Hospital (Kovilambakkam)", lat: 12.9290, lon: 80.2070 }
     ],
 
     tambaram: [
