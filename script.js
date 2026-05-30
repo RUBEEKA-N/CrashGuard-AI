@@ -160,3 +160,42 @@ function detectAccident(lat, lon) {
         <p>📞 Emergency Contacts Alerted</p>
     `;
 }
+// ===============================
+// EMERGENCY CONTACTS FEATURE
+// ===============================
+
+let emergencyContacts = [];
+
+function saveContact() {
+
+    const name = document.getElementById("contactName").value.trim();
+    const phone = document.getElementById("contactPhone").value.trim();
+
+    if (!name || !phone) {
+        alert("Please fill all fields");
+        return;
+    }
+
+    const contact = { name, phone };
+    emergencyContacts.push(contact);
+
+    updateContactList();
+
+    document.getElementById("contactName").value = "";
+    document.getElementById("contactPhone").value = "";
+}
+
+function updateContactList() {
+
+    const list = document.getElementById("contactList");
+
+    list.innerHTML = "";
+
+    emergencyContacts.forEach(c => {
+
+        const li = document.createElement("li");
+        li.textContent = `${c.name} - ${c.phone}`;
+
+        list.appendChild(li);
+    });
+}

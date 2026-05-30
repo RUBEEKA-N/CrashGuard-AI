@@ -54,3 +54,23 @@ button:hover {
     border: 1px solid #ef4444;
     text-align: left;
 }
+/* CONTACT SECTION STYLES */
+input {
+    width: 80%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: none;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-top: 8px;
+    padding: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 6px;
+}
