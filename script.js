@@ -1,38 +1,40 @@
 // ===============================
-// CRASHGUARD AI - FINAL ZONE SYSTEM
+// CRASHGUARD AI - FINAL CLEAN VERSION
+// Zone-based Hospital Emergency System
 // ===============================
 
-// 🏥 HOSPITAL DATABASE (Chennai + Tambaram + Perungalathur)
+// 🏥 ZONE HOSPITAL DATABASE (CORRECTED)
+
 const zoneHospitals = {
 
     central: [
-        { name: "Apollo Hospital (Greams Road)", lat: 13.0639, lon: 80.2519 },
-        { name: "Kauvery Hospital (Alwarpet)", lat: 13.0330, lon: 80.2540 },
-        { name: "Fortis Malar Hospital", lat: 13.0030, lon: 80.2570 }
-    ],
-
-    west: [
-        { name: "MIOT Hospital", lat: 13.0100, lon: 80.1910 },
-        { name: "SRMC Hospital (Porur)", lat: 13.0380, lon: 80.1560 },
-        { name: "Be Well Hospital (Anna Nagar)", lat: 13.0850, lon: 80.2100 }
-    ],
-
-    south: [
-        { name: "Global Hospital (Perumbakkam)", lat: 12.9170, lon: 80.2200 },
-        { name: "Hindu Mission Hospital (Tambaram)", lat: 12.9249, lon: 80.1225 },
-        { name: "Parvathy Hospital (Chromepet)", lat: 12.9516, lon: 80.1410 }
+        { name: "Apollo Hospital Greams Lane", lat: 13.0550, lon: 80.2500 },
+        { name: "Rajiv Gandhi Government General Hospital", lat: 13.0800, lon: 80.2750 },
+        { name: "Tamil Nadu Govt Multi Super Specialty Hospital (Omandurar)", lat: 13.0750, lon: 80.2700 }
     ],
 
     north: [
         { name: "Stanley Medical College Hospital", lat: 13.1070, lon: 80.2900 },
-        { name: "Government Kilpauk Hospital", lat: 13.0820, lon: 80.2410 }
+        { name: "Government Kilpauk Hospital", lat: 13.0820, lon: 80.2410 },
+        { name: "Chennai National Hospital (Parrys)", lat: 13.0900, lon: 80.2900 },
+        { name: "Dr. Mehta’s Hospital (Poonamallee High Road)", lat: 13.0780, lon: 80.2300 }
     ],
 
-    // 🟢 TAMBARAM + PERUNGALATHUR AREA (NEW ADDED)
+    west: [
+        { name: "SIMS Hospital (Vadapalani)", lat: 13.0500, lon: 80.2120 },
+        { name: "SRMC (Sri Ramachandra Medical Centre)", lat: 13.0400, lon: 80.1750 },
+        { name: "MGM Healthcare (Nelson Manickam Road)", lat: 13.0600, lon: 80.2400 }
+    ],
+
+    south: [
+        { name: "Venkateswara Hospital (Nandambakkam)", lat: 13.0100, lon: 80.2000 },
+        { name: "Kalaignar Centenary Super Specialty Hospital (Guindy)", lat: 13.0100, lon: 80.2200 },
+        { name: "Malar Hospital (Adyar)", lat: 13.0060, lon: 80.2570 }
+    ],
+
     tambaram: [
         { name: "Hindu Mission Hospital (Tambaram)", lat: 12.9249, lon: 80.1225 },
         { name: "Parvathy Hospital (Chromepet)", lat: 12.9516, lon: 80.1410 },
-        { name: "Annai Arul Hospital", lat: 12.9390, lon: 80.1430 },
         { name: "Deepam Hospital (Perungalathur)", lat: 12.9100, lon: 80.0890 },
         { name: "BM Hospital (Tambaram East)", lat: 12.9290, lon: 80.1180 }
     ]
@@ -41,6 +43,7 @@ const zoneHospitals = {
 // ===============================
 // GEO LOCATION START
 // ===============================
+
 function getLocationAndDetect() {
 
     const alertBox = document.getElementById("alertBox");
@@ -64,6 +67,7 @@ function showPosition(position) {
 // ===============================
 // DISTANCE CALCULATION
 // ===============================
+
 function getDistance(lat1, lon1, lat2, lon2) {
 
     const R = 6371;
@@ -83,32 +87,38 @@ function getDistance(lat1, lon1, lat2, lon2) {
 }
 
 // ===============================
-// ZONE DETECTION (INCLUDING TAMBARAM)
+// ZONE DETECTION (FIXED LOGIC)
 // ===============================
+
 function getZone(lat, lon) {
 
-    // Tambaram region (high priority)
+    // Tambaram first (important priority)
     if (lat >= 12.88 && lat <= 12.98 && lon >= 80.08 && lon <= 80.16) {
         return "tambaram";
     }
 
-    if (lat > 13.05) return "north";
+    // North Chennai
+    if (lat > 13.06) return "north";
 
-    if (lat >= 13.00 && lat <= 13.05) return "central";
+    // Central Chennai
+    if (lat >= 13.03 && lat <= 13.08) return "central";
 
-    if (lat < 13.00 && lon > 80.18) return "west";
+    // West Chennai
+    if (lon < 80.22 && lat >= 13.00) return "west";
 
+    // Default South Chennai
     return "south";
 }
 
 // ===============================
 // GET NEARBY HOSPITALS
 // ===============================
-function getZoneHospitals(lat, lon) {
 
-    let zone = getZone(lat, lon);
+function getZoneHospitalsList(lat, lon) {
 
-    let hospitals = zoneHospitals[zone] || [];
+    const zone = getZone(lat, lon);
+
+    const hospitals = zoneHospitals[zone] || [];
 
     return hospitals
         .map(h => ({
@@ -121,12 +131,13 @@ function getZoneHospitals(lat, lon) {
 // ===============================
 // MAIN ACCIDENT FUNCTION
 // ===============================
+
 function detectAccident(lat, lon) {
 
     const alertBox = document.getElementById("alertBox");
 
-    const nearby = getZoneHospitals(lat, lon);
     const zone = getZone(lat, lon);
+    const nearby = getZoneHospitalsList(lat, lon);
 
     if (navigator.vibrate) {
         navigator.vibrate([500, 300, 500]);
@@ -135,16 +146,16 @@ function detectAccident(lat, lon) {
     alertBox.innerHTML = `
         <h2>🚨 Accident Detected</h2>
 
-        <p>📍 Zone Detected: ${zone.toUpperCase()}</p>
+        <p>📍 Zone Detected: <b>${zone.toUpperCase()}</b></p>
 
         <p>Latitude: ${lat}</p>
         <p>Longitude: ${lon}</p>
 
-        <p>📞 Emergency Contacts Alerted</p>
         <p>🚑 Ambulance Dispatched</p>
+        <p>📞 Emergency Contacts Alerted</p>
 
         <div class="hospital">
-            <h3>🏥 Nearby Hospitals (${zone.toUpperCase()})</h3>
+            <h3>🏥 Nearby Hospitals</h3>
 
             ${
                 nearby.map(h => `
