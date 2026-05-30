@@ -1,33 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CrashGuard AI</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <h1>🚑 CrashGuard AI</h1>
+    <h1>🚑 CrashGuard AI</h1>
 
-        <p class="subtitle">
-            AI Powered Accident Emergency Response System
-        </p>
+    <p class="subtitle">AI Powered Accident Emergency System</p>
 
-        <button 
-        onclick="getLocationAndDetect()">Get
-        Location & Detect
-        </button>
+    <button onclick="getLocationAndDetect()">📍 Get Location & Detect</button>
 
-        <div id="alertBox"></div>
+    <button onclick="detectAccidentManually()">🚨 Test Accident</button>
 
-    </div>
+    <div id="alertBox"></div>
 
-    <script src="script.js"></script>
+</div>
+
+<script src="script.js"></script>
 
 </body>
 </html>
