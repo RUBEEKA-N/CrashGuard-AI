@@ -1,51 +1,56 @@
-
-body{
-    margin:0;
-    padding:0;
-    background:black;
-    font-family:Arial, sans-serif;
-    color:white;
+body {
+    margin: 0;
+    padding: 0;
+    background: #0b0f1a;
+    font-family: Arial, sans-serif;
+    color: white;
 }
 
-.container{
-    text-align:center;
-    padding-top:100px;
+.container {
+    text-align: center;
+    padding-top: 90px;
 }
 
-h1{
-    font-size:50px;
-    color:red;
+h1 {
+    font-size: 52px;
+    color: #ff2e2e;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
 }
 
-.subtitle{
-    font-size:20px;
-    margin-bottom:40px;
+.subtitle {
+    font-size: 18px;
+    margin-bottom: 40px;
+    color: #cbd5e1;
 }
 
-button{
-    padding:15px 30px;
-    font-size:20px;
-    background:red;
-    color:white;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    background: linear-gradient(135deg, #ff0000, #8b0000);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s ease;
 }
 
-button:hover{
-    background:darkred;
+button:hover {
+    transform: scale(1.05);
 }
 
-#alertBox{
-    margin-top:40px;
-    font-size:24px;
-    color:yellow;
+#alertBox {
+    margin-top: 40px;
+    font-size: 20px;
+    color: #facc15;
+    line-height: 1.6;
 }
-.hospital{
-    background:#111;
-    margin:20px auto;
-    padding:20px;
-    width:300px;
-    border-radius:15px;
-    border:2px solid red;
+
+.hospital {
+    background: #111827;
+    margin: 20px auto;
+    padding: 18px;
+    width: 320px;
+    border-radius: 15px;
+    border: 1px solid #ef4444;
+    text-align: left;
 }
